@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Udayakumar D - Resume</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #ffffff;
+            --text: #000000;
+            --subtext: #4b5563;
+            --accent: #111827;
+            --border: #e5e7eb;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: #fff;
+            color: var(--text);
+            line-height: 1.4;
+            padding: 10px; /* 10px space on all sides as requested */
+            width: 210mm; /* A4 Width */
+            min-height: 297mm; /* A4 Height */
+            margin: 0 auto;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Subtle shadow for screen view */
+        }
+
+        @media print {
+            @page {
+                size: A4;
+                margin: 10px; /* 10px margin on 4 sides for print */
+            }
+            body { 
+                padding: 0; 
+                width: 100%; 
+                box-shadow: none;
+            }
+            .no-print { display: none; }
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid var(--accent);
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+
+        .name-title h1 {
+            font-size: 32px;
+            font-weight: 900;
+            letter-spacing: -1.5px;
+            text-transform: uppercase;
+            line-height: 1;
+        }
+
+        .name-title p {
+            font-size: 14px;
+            color: var(--subtext);
+            font-weight: 700;
+            margin-top: 3px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .contact-info {
+            text-align: right;
+            font-size: 11px;
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        .contact-info p {
+            margin-bottom: 2px;
+        }
+
+        .contact-info a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        section {
+            margin-bottom: 15px;
+        }
+
+        h2 {
+            font-size: 12px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #fff;
+            background: var(--accent);
+            display: inline-block;
+            padding: 3px 10px;
+            margin-bottom: 8px;
+            border-radius: 2px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .item {
+            margin-bottom: 15px;
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 4px;
+        }
+
+        .item-title {
+            font-weight: 700;
+            font-size: 15px;
+        }
+
+        .item-date {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--subtext);
+        }
+
+        .item-subtitle {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--subtext);
+            margin-bottom: 6px;
+        }
+
+        .item-desc {
+            font-size: 13px;
+            color: #374151;
+            text-align: justify;
+        }
+
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .skill-tag {
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border: 1px solid var(--accent);
+            border-radius: 4px;
+            text-transform: uppercase;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .project-tech {
+            font-size: 11px;
+            font-weight: 800;
+            color: var(--subtext);
+            margin-top: 4px;
+        }
+
+        @media print {
+            body { padding: 0; }
+            .no-print { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="name-title">
+            <h1>Udayakumar D</h1>
+            <p>Full Stack Developer</p>
+        </div>
+        <div class="contact-info">
+            <p> Tiruppur, Tamil Nadu, India</p>
+            <p>+91 6382666150</p>
+            <p><a href="mailto:udaya.fullstack@gmail.com">udaya.fullstack@gmail.com</a></p>
+            <p><a href="https://github.com/Udaya1011">github.com/Udaya1011</a></p>
+            <p><a href="https://www.linkedin.com/in/udayakumar-d-8471b430b">linkedin.com/in/udayakumar-d</a></p>
+        </div>
+    </header>
+
+    <section>
+        <h2>Professional Summary</h2>
+        <p class="item-desc">
+            Dedicated Full Stack Developer with an MCA background, specializing in high-performance web and mobile applications. Experienced in building scalable real-time systems, industrial automation tools, and secure communication platforms. Passionate about crafting elegant, minimalist user interfaces with a focus on biometric security and seamless cross-platform performance.
+        </p>
+    </section>
+
+    <div class="grid">
+        <section>
+            <h2>Education</h2>
+            <div class="item">
+                <div class="item-header">
+                    <span class="item-title">Master of Computer Applications</span>
+                    <span class="item-date">2024 - 2026</span>
+                </div>
+                <div class="item-subtitle">RVS College Of Arts & Science, Coimbatore</div>
+                <p class="item-date">CGPA: 8.4</p>
+            </div>
+            <div class="item">
+                <div class="item-header">
+                    <span class="item-title">Bachelor of Computer Applications</span>
+                    <span class="item-date">2021 - 2024</span>
+                </div>
+                <div class="item-subtitle">RVS College Of Arts & Science, Coimbatore</div>
+                <p class="item-date">CGPA: 7.7</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Core Skills</h2>
+            <div class="skills-container">
+                <span class="skill-tag">React.js</span>
+                <span class="skill-tag">Next.js</span>
+                <span class="skill-tag">Node.js</span>
+                <span class="skill-tag">MongoDB</span>
+                <span class="skill-tag">Express</span>
+                <span class="skill-tag">Tailwind CSS</span>
+                <span class="skill-tag">Socket.io</span>
+                <span class="skill-tag">WebRTC</span>
+                <span class="skill-tag">Firebase</span>
+                <span class="skill-tag">Git</span>
+                <span class="skill-tag">Figma</span>
+            </div>
+        </section>
+    </div>
+
+    <section>
+        <h2>Key Projects</h2>
+        <div class="item">
+            <div class="item-header">
+                <span class="item-title">YOLO MESSENGER</span>
+                <span class="item-date">Full Stack Platform</span>
+            </div>
+            <p class="item-desc">A secure real-time communication platform featuring Biometric Authentication (FaceID/Fingerprint), WebRTC audio/video calls, and cross-platform push notifications via FCM. Scalable architecture built for mobile and web.</p>
+            <p class="project-tech">React, Node.js, Socket.io, WebRTC, Firebase, Cloudinary</p>
+        </div>
+
+        <div class="item">
+            <div class="item-header">
+                <span class="item-title">TEXTRACK QC</span>
+                <span class="item-date">Industrial Automation</span>
+            </div>
+            <p class="item-desc">Industrial QC platform for the Tiruppur textile hub. Digitizes manual manufacturing reports, automated billing, and inspection summaries, replacing paper-based documentation with a high-performance dashboard.</p>
+            <p class="project-tech">React.js, Data Visualization, Automation Logic</p>
+        </div>
+
+        <div class="item">
+            <div class="item-header">
+                <span class="item-title">RVSCAS ACADEMIC PORTAL</span>
+                <span class="item-date">Academic Management</span>
+            </div>
+            <p class="item-desc">Integrated Student-Teacher portal with Face ID login, slot booking system, and real-time messenger. Streamlined study material distribution and attendance tracking for university environments.</p>
+            <p class="project-tech">React.js, Node.js, Biometric Auth, Slot Booking System</p>
+        </div>
+
+        <div class="item">
+            <div class="item-header">
+                <span class="item-title">AIR AMBULANCE ADMIN</span>
+                <span class="item-date">Internship - Movi Cloud</span>
+            </div>
+            <p class="item-desc">Medical emergency management module featuring real-time flight tracking and dynamic billing calculations for hospital transfers.</p>
+            <p class="project-tech">React.js, Real-time Tracking, Finance Logic</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>Experience & Internship</h2>
+        <div class="item">
+            <div class="item-header">
+                <span class="item-title">Frontend Developer Intern</span>
+                <span class="item-date">Movi Cloud | Dec 2025 - Feb 2026</span>
+            </div>
+            <p class="item-desc">Built enterprise-level admin modules for HMS and Air Ambulance services. Optimized frontend performance and resolved critical UI/UX bottlenecks in clinical management systems.</p>
+            <p class="project-tech" style="margin-top: 5px;">
+                <a href="/resume/UDAYA (1).pdf" target="_blank" style="color: var(--accent); text-decoration: underline; font-weight: 700;">View Internship Certificate</a>
+            </p>
+        </div>
+
+    </section>
+
+    <div style="text-align: center; margin-top: 30px;" class="no-print">
+        <button onclick="window.print()" style="padding: 10px 20px; background: #000; color: #fff; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">Download as PDF</button>
+    </div>
+</body>
+</html>
