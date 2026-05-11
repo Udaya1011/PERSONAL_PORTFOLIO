@@ -12,9 +12,6 @@ import {
   SiExpress, SiMongodb, SiGit, SiPostman, SiTailwindcss,
   SiFirebase, SiCloudinary, SiFigma
 } from 'react-icons/si';
-import { FiShield, FiCpu, FiActivity, FiLock, FiTerminal, FiChevronRight, FiMic, FiVideo } from 'react-icons/fi';
-import { IoPulseSharp, IoShieldCheckmark } from 'react-icons/io5';
-
 // --- Navbar Component ---
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
