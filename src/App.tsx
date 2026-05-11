@@ -12,6 +12,8 @@ import {
   SiExpress, SiMongodb, SiGit, SiPostman, SiTailwindcss,
   SiFirebase, SiCloudinary, SiFigma
 } from 'react-icons/si';
+import { FiShield, FiCpu, FiActivity, FiLock, FiTerminal, FiChevronRight, FiMic, FiVideo } from 'react-icons/fi';
+import { IoPulseSharp, IoShieldCheckmark } from 'react-icons/io5';
 
 // --- Navbar Component ---
 const Navbar = () => {
@@ -611,6 +613,139 @@ const Footer = () => {
   );
 };
 
+// --- Identity Reveal Component ---
+const IdentityReveal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) => {
+  return (
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          onClick={onClose}
+          className="fixed inset-0 z-[200] bg-black flex items-center justify-center p-4 cursor-pointer overflow-hidden"
+        >
+          <div className="scanline"></div>
+          
+          <motion.div
+            initial={{ scale: 0.9, opacity: 0, y: 20 }}
+            animate={{ scale: 1, opacity: 1, y: 0 }}
+            exit={{ scale: 0.9, opacity: 0, y: 20 }}
+            transition={{ type: "spring", duration: 0.8 }}
+            onClick={(e) => e.stopPropagation()}
+            className="reveal-glass w-full max-w-4xl rounded-[2.5rem] border border-white/10 overflow-hidden relative"
+          >
+            {/* Background Glows */}
+            <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500/10 blur-[120px] rounded-full"></div>
+            <div className="absolute bottom-0 left-0 w-96 h-96 bg-purple-500/10 blur-[120px] rounded-full"></div>
+            
+            <div className="relative z-10 flex flex-col md:flex-row min-h-[500px]">
+              {/* Left Panel - Brand */}
+              <div className="w-full md:w-[40%] p-10 flex flex-col items-center justify-center border-b md:border-b-0 md:border-r border-white/5 bg-white/[0.01]">
+                <div className="relative mb-10">
+                  <div className="absolute inset-0 bg-white/5 blur-3xl rounded-full"></div>
+                  <div className="w-32 h-32 md:w-48 md:h-48 rounded-full border border-white/10 p-2 relative">
+                    <div className="w-full h-full rounded-full overflow-hidden grayscale hover:grayscale-0 transition-all duration-700">
+                      <img 
+                        src="/images/newprofile2.jpg" 
+                        alt="Udaya" 
+                        className="w-full h-full object-cover"
+                        onError={(e) => { e.currentTarget.src = "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400&auto=format&fit=crop" }}
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="text-center space-y-1">
+                  <h2 className="text-3xl font-bold tracking-tighter text-white">PORTFOLIO</h2>
+                  <p className="text-[9px] font-medium tracking-[0.4em] text-gray-500 uppercase">Personal Archive</p>
+                </div>
+              </div>
+
+              {/* Right Panel - Details */}
+              <div className="flex-1 p-10 flex flex-col">
+                <div className="flex justify-between items-start mb-12">
+                  <div className="space-y-1">
+                    <p className="text-[10px] font-bold tracking-[0.3em] text-white uppercase">System Architect</p>
+                    <p className="text-[9px] font-medium tracking-[0.2em] text-gray-500 uppercase">Personal Portfolio v3.0</p>
+                  </div>
+                  <div className="text-right">
+                    <p className="text-[9px] font-bold tracking-widest text-white uppercase opacity-40">Tirupur, TN</p>
+                    <p className="text-[9px] font-bold tracking-widest text-gray-600 uppercase">Identity Verified</p>
+                  </div>
+                </div>
+
+                <div className="mb-10">
+                  <h1 className="text-6xl md:text-8xl font-black text-white tracking-tighter leading-none mb-4">UDAYA</h1>
+                  <p className="text-[11px] text-gray-400 max-w-md leading-relaxed border-l border-white/20 pl-4">
+                    Highly motivated Full Stack Developer with a passion for creating cinematic web experiences. 
+                    Specialized in modern JavaScript frameworks and scalable backend architectures.
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
+                  <div className="space-y-4">
+                    <p className="text-[10px] font-bold text-white uppercase tracking-[0.3em]">Project Portfolio</p>
+                    <div className="space-y-3">
+                      {[
+                        { label: 'Total Projects', value: '09+' },
+                        { label: 'Completed Internships', value: '02' },
+                        { label: 'Core Frameworks', value: '05' }
+                      ].map((stat, idx) => (
+                        <div key={idx} className="flex justify-between items-center text-[10px] border-b border-white/5 pb-2">
+                          <span className="text-gray-500 uppercase tracking-widest">{stat.label}</span>
+                          <span className="text-white font-bold">{stat.value}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="space-y-4">
+                    <p className="text-[10px] font-bold text-white uppercase tracking-[0.3em]">Latest Highlights</p>
+                    <div className="space-y-3">
+                      {[
+                        { name: 'Yolo Messenger', desc: 'Real-time WebRTC/Socket Platform' },
+                        { name: 'RVSCAS Portal', desc: 'Face ID & Academic Management' },
+                        { name: 'Air Ambulance', desc: 'Medical Logistics & Tracking' }
+                      ].map((project, idx) => (
+                        <div key={idx} className="group">
+                          <p className="text-[9px] font-bold text-white uppercase tracking-wider group-hover:text-blue-400 transition-colors">{project.name}</p>
+                          <p className="text-[8px] text-gray-500 uppercase tracking-widest">{project.desc}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-auto pt-8 border-t border-white/5 flex justify-end items-center">
+                  <div className="text-right">
+                    <p className="text-[10px] font-bold tracking-widest text-white uppercase">Developed by <span className="text-gray-400 font-black">UDAYAKUMAR D</span></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Corner Decorative Elements */}
+            <div className="absolute top-0 left-0 w-8 h-8 border-t border-l border-white/10 rounded-tl-3xl"></div>
+            <div className="absolute top-0 right-0 w-8 h-8 border-t border-r border-white/10 rounded-tr-3xl"></div>
+            <div className="absolute bottom-0 left-0 w-8 h-8 border-b border-l border-white/10 rounded-bl-3xl"></div>
+            <div className="absolute bottom-0 right-0 w-8 h-8 border-b border-r border-white/10 rounded-br-3xl"></div>
+            <div className="absolute bottom-4 right-10 text-[8px] font-bold tracking-[0.4em] text-white/10 uppercase">V4.0.2 Stable</div>
+          </motion.div>
+          
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 0.4 }}
+            className="absolute bottom-10 left-1/2 -translate-x-1/2 text-[10px] font-bold tracking-[0.5em] text-white uppercase pointer-events-none"
+          >
+            Click anywhere to terminate signal
+          </motion.p>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+};
+
 // --- Loading Screen Component ---
 const LoadingScreen = () => (
   <div className="fixed inset-0 z-[100] flex items-center justify-center bg-dark-900">
@@ -622,21 +757,61 @@ const LoadingScreen = () => (
 function App() {
   const [loading, setLoading] = useState(true);
   const [showTopBtn, setShowTopBtn] = useState(false);
+  const [showIdentity, setShowIdentity] = useState(false);
 
   useEffect(() => {
     // Simulate Loading
     const timer = setTimeout(() => setLoading(false), 1500);
 
-    // Back to Top listener
+    // Global Listeners
     const handleScroll = () => {
       if (window.scrollY > 400) setShowTopBtn(true);
       else setShowTopBtn(false);
     };
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      // Block F12
+      if (e.key === 'F12' || e.keyCode === 123) {
+        e.preventDefault();
+        return false;
+      }
+
+      // Block Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+Shift+C (Inspect, Console, Elements)
+      // Handles both Ctrl (Windows/Linux) and Meta (Mac)
+      if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67)) {
+        e.preventDefault();
+        return false;
+      }
+
+      // Block Ctrl+U (View Source) and Ctrl+S (Save Page)
+      if ((e.ctrlKey || e.metaKey) && (e.keyCode === 85 || e.keyCode === 83)) {
+        e.preventDefault();
+        return false;
+      }
+
+      // Block Alt+Command+I (Mac Inspect)
+      if (e.metaKey && e.altKey && (e.keyCode === 73 || e.keyCode === 74)) {
+        e.preventDefault();
+        return false;
+      }
+    };
+
+    const handleDragStart = (e: DragEvent) => {
+      if ((e.target as HTMLElement).tagName === 'IMG') {
+        e.preventDefault();
+        return false;
+      }
+    };
+
     window.addEventListener('scroll', handleScroll);
+    window.addEventListener('keydown', handleKeyDown);
+    window.addEventListener('dragstart', handleDragStart);
 
     return () => {
       clearTimeout(timer);
       window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('dragstart', handleDragStart);
     };
   }, []);
 
@@ -645,7 +820,13 @@ function App() {
   if (loading) return <LoadingScreen />;
 
   return (
-    <div className="min-h-screen bg-dark-900 text-white selection:bg-white selection:text-black">
+    <div 
+      onContextMenu={(e) => {
+        e.preventDefault();
+        setShowIdentity(true);
+      }}
+      className="min-h-screen bg-dark-900 text-white selection:bg-white selection:text-black"
+    >
       <Navbar />
       <Hero />
       <About />
@@ -653,6 +834,8 @@ function App() {
       <Projects />
       <Contact />
       <Footer />
+
+      <IdentityReveal isOpen={showIdentity} onClose={() => setShowIdentity(false)} />
 
       {/* Back to Top Button */}
       <AnimatePresence>
