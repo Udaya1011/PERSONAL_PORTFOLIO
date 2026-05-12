@@ -24,16 +24,14 @@ const Main = () => {
   const [blocked, setBlocked] = useState(isDevToolsOpen())
 
   useEffect(() => {
-    // Setup the security listener
+    // Initial immediate check
+    if (isDevToolsOpen()) setBlocked(true);
+
     const cleanup = setupSecurity((isOpen) => {
       setBlocked(isOpen);
-      
-      // If blocked, we also redirect if it stays open for too long (Kill Switch)
       if (isOpen) {
-        const killSwitch = setTimeout(() => {
-          window.location.href = "https://www.google.com";
-        }, 15000);
-        return () => clearTimeout(killSwitch);
+        // Aggressive purge: force a clean reload to wipe sources
+        window.location.reload();
       }
     });
     const handleGlobalInteraction = (e: any) => {

@@ -1,5 +1,5 @@
 export const isDevToolsOpen = () => {
-  const threshold = 160;
+  const threshold = 200;
   const widthDiff = window.outerWidth - window.innerWidth > threshold;
   const heightDiff = window.outerHeight - window.innerHeight > threshold;
   return widthDiff || heightDiff;
