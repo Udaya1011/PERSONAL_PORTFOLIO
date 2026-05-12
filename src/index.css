@@ -98,3 +98,21 @@ img {
   0% { bottom: 100%; }
   100% { bottom: -100px; }
 }
+/* Extreme Security: Disable Selection & Printing */
+* {
+  user-select: none !important;
+  -webkit-user-select: none !important;
+  -ms-user-select: none !important;
+  -moz-user-select: none !important;
+}
+
+@media print {
+  body {
+    display: none !important;
+  }
+}
+
+::selection {
+  background: transparent !important;
+  color: transparent !important;
+}

@@ -4,11 +4,76 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>react-portfolio</title>
-    <script type="module" crossorigin src="/assets/index-BRD1rBaQ.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-D-bP4f01.css">
+    <title>Udaya | Portfolio</title>
+    <!-- Level 5 Security Meta Tags -->
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noodp, noydir" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <meta name="google" content="notranslate" />
   </head>
   <body>
+    <noscript>
+      <div style="background:#050505;color:white;display:flex;align-items:center;justify-content:center;height:100vh;font-family:sans-serif;text-align:center;">
+        <div>
+          <h1 style="font-size:4rem;margin:0;">ACCESS DENIED</h1>
+          <p style="opacity:0.5;letter-spacing:0.2em;">JAVASCRIPT REQUIRED FOR SECURITY VERIFICATION</p>
+        </div>
+      </div>
+    </noscript>
     <div id="root"></div>
+    <script>
+      (function() {
+        const threshold = 160;
+        const isDevOpen = () => (
+          window.outerWidth - window.innerWidth > threshold || 
+          window.outerHeight - window.innerHeight > threshold
+        );
+
+        let appLoaded = false;
+
+        const gatekeeper = () => {
+          try {
+            const open = isDevOpen();
+            const restricted = window.location.hash === '#restricted';
+
+            if (open || restricted) {
+              // Level 12: Aggressive Purge
+              console.clear();
+              
+              if (!open && restricted) {
+                window.location.replace(window.location.pathname);
+                window.location.reload();
+                return;
+              }
+
+              if (!document.getElementById('sorry-screen')) {
+                document.body.style.margin = '0';
+                document.body.style.background = '#050505';
+                document.getElementById('root').innerHTML = `
+                  <div id="sorry-screen" style="background:#050505;color:white;display:flex;flex-direction:column;align-items:center;justify-content:center;height:100vh;width:100vw;font-family:sans-serif;text-align:center;position:fixed;top:0;left:0;z-index:9999;">
+                    <div style="padding:4rem;border:1px solid rgba(255,255,255,0.05);border-radius:3rem;background:rgba(255,255,255,0.01);backdrop-filter:blur(20px);">
+                      <h1 style="font-size:6rem;margin:0;font-style:italic;font-weight:900;letter-spacing:-0.05em;line-height:1;">SORRY</h1>
+                      <p style="opacity:0.4;letter-spacing:0.4em;font-size:0.7rem;text-transform:uppercase;margin-top:1.5rem;">System Restricted // Signal Terminated</p>
+                    </div>
+                  </div>
+                `;
+              }
+              // Force stop current execution
+              throw new Error("Security Block");
+            } else if (!appLoaded) {
+              appLoaded = true;
+              // Vite can track t/assets/main-BhPXepzS.tsxmport
+              import('/src/main.tsx').catch(() => {});
+            }
+          } catch (e) {
+            if (e.message !== "Security Block") console.error(e);
+          }
+        };
+
+        setInterval(gatekeeper, 500);
+        gatekeeper();
+      })();
+    </script>
   </body>
 </html>

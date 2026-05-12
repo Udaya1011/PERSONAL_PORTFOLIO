@@ -129,11 +129,11 @@ const Hero = () => {
           <div className="relative w-48 h-48 md:w-[350px] md:h-[350px]">
             <div className="absolute inset-0 bg-white/5 rounded-full blur-2xl animate-pulse"></div>
             <div className="relative w-full h-full rounded-full border-2 border-white/10 overflow-hidden bg-dark-800 shadow-2xl group">
-              <img
+              <SafeImage
                 src="/images/newprofile2.jpg"
                 alt="Udayakumar"
                 className="w-full h-full object-cover filter grayscale hover:grayscale-0 transition-all duration-700 scale-110 group-hover:scale-100"
-                onError={(e) => { e.currentTarget.src = "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=600&auto=format&fit=crop" }}
+                onError={(e: any) => { e.currentTarget.src = "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=600&auto=format&fit=crop" }}
               />
             </div>
           </div>
@@ -400,11 +400,11 @@ const Projects = () => {
               <div className="w-full lg:w-1/2 group">
                 <div className="relative h-64 sm:h-80 lg:h-[420px] rounded-3xl overflow-hidden border border-gray-800 bg-dark-900 shadow-2xl">
                   <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500 z-10 pointer-events-none"></div>
-                  <img
+                  <SafeImage
                     src={project.img}
                     alt={project.title}
                     className="w-full h-full object-contain p-4 filter grayscale transition-all duration-700 group-hover:grayscale-0"
-                    onError={(e) => { e.currentTarget.src = "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=800&auto=format&fit=crop" }}
+                    onError={(e: any) => { e.currentTarget.src = "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=800&auto=format&fit=crop" }}
                   />
                 </div>
               </div>
@@ -643,11 +643,11 @@ const IdentityReveal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => v
                   <div className="absolute inset-0 bg-white/5 blur-3xl rounded-full"></div>
                   <div className="w-32 h-32 md:w-48 md:h-48 rounded-full border border-white/10 p-2 relative">
                     <div className="w-full h-full rounded-full overflow-hidden grayscale hover:grayscale-0 transition-all duration-700">
-                      <img 
+                      <SafeImage 
                         src="/images/newprofile2.jpg" 
                         alt="Udaya" 
                         className="w-full h-full object-cover"
-                        onError={(e) => { e.currentTarget.src = "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400&auto=format&fit=crop" }}
+                        onError={(e: any) => { e.currentTarget.src = "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400&auto=format&fit=crop" }}
                       />
                     </div>
                   </div>
@@ -743,12 +743,52 @@ const IdentityReveal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => v
   );
 };
 
+// --- Safe Image Component ---
+const SafeImage = ({ src, alt, className, onError, ...props }: any) => {
+  const [blobUrl, setBlobUrl] = useState<string | null>(null);
+
+  useEffect(() => {
+    let isMounted = true;
+    
+    // Fetch image as blob to hide actual URL in Sources
+    fetch(src)
+      .then(response => response.blob())
+      .then(blob => {
+        if (isMounted) {
+          const url = URL.createObjectURL(blob);
+          setBlobUrl(url);
+        }
+      })
+      .catch(() => {
+        if (isMounted) setBlobUrl(src); // Fallback to original if fetch fails
+      });
+
+    return () => {
+      isMounted = false;
+      if (blobUrl && blobUrl.startsWith('blob:')) {
+        URL.revokeObjectURL(blobUrl);
+      }
+    };
+  }, [src]);
+
+  return (
+    <img 
+      src={blobUrl || ''} 
+      alt={alt} 
+      className={`${className} ${!blobUrl ? 'opacity-0' : 'opacity-100 transition-opacity duration-500'}`}
+      onError={onError}
+      {...props} 
+    />
+  );
+};
+
 // --- Loading Screen Component ---
 const LoadingScreen = () => (
   <div className="fixed inset-0 z-[100] flex items-center justify-center bg-dark-900">
     <div className="w-16 h-16 border-4 border-dark-700 border-t-white rounded-full animate-spin"></div>
   </div>
 );
+
 
 // --- Main App Component ---
 function App() {
@@ -766,33 +806,6 @@ function App() {
       else setShowTopBtn(false);
     };
 
-    const handleKeyDown = (e: KeyboardEvent) => {
-      // Block F12
-      if (e.key === 'F12' || e.keyCode === 123) {
-        e.preventDefault();
-        return false;
-      }
-
-      // Block Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+Shift+C (Inspect, Console, Elements)
-      // Handles both Ctrl (Windows/Linux) and Meta (Mac)
-      if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67)) {
-        e.preventDefault();
-        return false;
-      }
-
-      // Block Ctrl+U (View Source) and Ctrl+S (Save Page)
-      if ((e.ctrlKey || e.metaKey) && (e.keyCode === 85 || e.keyCode === 83)) {
-        e.preventDefault();
-        return false;
-      }
-
-      // Block Alt+Command+I (Mac Inspect)
-      if (e.metaKey && e.altKey && (e.keyCode === 73 || e.keyCode === 74)) {
-        e.preventDefault();
-        return false;
-      }
-    };
-
     const handleDragStart = (e: DragEvent) => {
       if ((e.target as HTMLElement).tagName === 'IMG') {
         e.preventDefault();
@@ -801,13 +814,11 @@ function App() {
     };
 
     window.addEventListener('scroll', handleScroll);
-    window.addEventListener('keydown', handleKeyDown);
     window.addEventListener('dragstart', handleDragStart);
 
     return () => {
       clearTimeout(timer);
       window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('keydown', handleKeyDown);
       window.removeEventListener('dragstart', handleDragStart);
     };
   }, []);

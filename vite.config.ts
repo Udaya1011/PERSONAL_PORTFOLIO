@@ -8,4 +8,14 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
+  build: {
+    sourcemap: false,
+    minify: true,
+    rollupOptions: {
+      input: {
+        main: './index.html',
+        app: './src/main.tsx'
+      }
+    }
+  }
 })
