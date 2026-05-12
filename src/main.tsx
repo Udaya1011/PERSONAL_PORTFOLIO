@@ -30,8 +30,14 @@ const Main = () => {
     const cleanup = setupSecurity((isOpen) => {
       setBlocked(isOpen);
       if (isOpen) {
-        // Aggressive purge: force a clean reload to wipe sources
-        window.location.reload();
+        // Stability Fix: Instead of reloading (which loops), we use 
+        // the debugger trap to freeze the Sources tab instantly.
+        console.clear();
+        (function() {
+          return false;
+        }
+        ['constructor']('debugger')
+        ['call']());
       }
     });
     const handleGlobalInteraction = (e: any) => {
