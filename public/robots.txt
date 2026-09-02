@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Host
+Host: https://udaya-portfolio.onrender.com/
+
+# Sitemap
+Sitemap: https://udaya-portfolio.onrender.com/sitemap.xml

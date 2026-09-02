@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Typewriter } from 'react-simple-typewriter';
 import {
@@ -26,7 +27,7 @@ const Navbar = () => {
   const navLinks = ['Home', 'About', 'Skills', 'Projects', 'Contact'];
 
   return (
-    <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'py-4 glass-card border-b border-gray-800' : 'py-6 bg-transparent'}`}>
+    <nav aria-label="Main Navigation" className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'py-4 glass-card border-b border-gray-800' : 'py-6 bg-transparent'}`}>
       <div className="container mx-auto px-6 md:px-12 flex justify-between items-center">
         <a href="#home" className="text-2xl font-bold tracking-tighter text-white">
           Udaya<span className="font-normal text-gray-500"></span>
@@ -45,7 +46,7 @@ const Navbar = () => {
         </div>
 
         <div className="md:hidden flex items-center gap-4">
-          <button onClick={() => setIsOpen(!isOpen)} className="text-2xl text-white">
+          <button onClick={() => setIsOpen(!isOpen)} aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"} className="text-2xl text-white">
             {isOpen ? <FiX /> : <FiMenu />}
           </button>
         </div>
@@ -113,6 +114,7 @@ const Hero = () => {
             <a 
               href="/UDAYAKUMAR D (3) (1).pdf" 
               target="_blank"
+              aria-label="View Udayakumar D Resume PDF"
               className="px-8 py-4 glass-card rounded-full font-bold text-white border border-gray-700 hover:border-white transition-all flex items-center justify-center gap-2 group"
             >
               <FiDownload className="group-hover:translate-y-1 transition-transform" /> View Resume
@@ -131,7 +133,9 @@ const Hero = () => {
             <div className="relative w-full h-full rounded-full border-2 border-white/10 overflow-hidden bg-dark-800 shadow-2xl group">
               <SafeImage
                 src="/images/newprofile2.jpg"
-                alt="Udayakumar"
+                alt="Udayakumar D - Full Stack MERN Developer Profile"
+                loading="eager"
+                decoding="async"
                 className="w-full h-full object-cover filter grayscale hover:grayscale-0 transition-all duration-700 scale-110 group-hover:scale-100"
                 onError={(e: any) => { e.currentTarget.src = "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=600&auto=format&fit=crop" }}
               />
@@ -254,7 +258,7 @@ const About = () => {
                 </div>
                 <p className="text-sm text-gray-400 mb-4 font-medium tracking-wide">Movi Cloud Labs | Dec 2025 - Feb 2026</p>
                 <div className="mb-4">
-                  <a href="/resume/UDAYA (1).pdf" target="_blank" className="text-xs font-bold text-white px-3 py-1.5 bg-white/10 rounded-lg border border-white/20 hover:bg-white hover:text-black transition-all inline-flex items-center gap-2">
+                  <a href="/resume/UDAYA (1).pdf" target="_blank" aria-label="View Internship Certificate PDF" className="text-xs font-bold text-white px-3 py-1.5 bg-white/10 rounded-lg border border-white/20 hover:bg-white hover:text-black transition-all inline-flex items-center gap-2">
                     View Certificate
                   </a>
                 </div>
@@ -362,15 +366,15 @@ const Skills = () => {
 // --- Projects Component ---
 const Projects = () => {
   const projects = [
-    { title: "Developer Portfolio", desc: "A highly optimized, professional portfolio built with a strict monochrome design. Features glassmorphism UI, smooth scroll animations, and interactive components designed for maximum performance.", tech: ["React.js", "Tailwind CSS", "Framer Motion"], img: "/images/portfolio-preview.png", live: "https://udaya-portfolio.onrender.com", repo: "https://github.com/Udaya1011/react-portfolio" },
-    { title: "Lyrics Studio", desc: "A personal lyrics management app built for a songwriter who wanted a dedicated space to write, save, and revisit their songs anytime, anywhere. Features a clean reader mode to showcase lyrics beautifully on any device.", tech: ["React.js", "Node.js"], img: "/images/lyrics-studio.png", live: "https://lyric-client.onrender.com/", repo: "#" },
-    { title: "Travellian", desc: "A travel portfolio single page application built during internship training using Figma designs. A clean and visually rich travel experience showcase with modern UI components.", tech: ["React.js", "Figma"], img: "/images/travellian.jpg", live: "https://travellian.onrender.com", repo: "#", company: "IT Boomi", companyLink: "https://itboomi.com/", companyIcon: "/images/it-boomi-icon.png" },
-    { title: "Air Ambulance Service", desc: "Developed the frontend admin module during an internship for an Air Ambulance management platform. Responsible for building dashboards to manage hospitals, users, and billing operations. Implemented real-time flight tracking between locations with an automated billing system that calculates charges dynamically.", tech: ["React.js"], img: "/images/air-ambulance.png", live: "https://air-ambulance-frontend-7i8i.onrender.com/#/login", repo: "#", company: "Movi Cloud", companyLink: "https://www.movicloudlabs.com/", companyIcon: "/images/movi-cloud-icon.png" },
-    { title: "HMS - Hospital Management System", desc: "A comprehensive internship project involving a full frontend redesign and bug optimization of a hospital management system. Developed specialized role-based modules for Doctors, Pharmacists, and Pathologists to streamline clinical workflows and data management.", tech: ["React.js"], img: "/images/movi-hospital.png", live: "https://hms-dev-2.onrender.com/", repo: "#", company: "Movi Cloud", companyLink: "https://www.movicloudlabs.com/", companyIcon: "/images/movi-cloud-icon.png" },
-    { title: "RVSCAS ACADEMIC PORTAL", desc: "My final year semester project: A robust Student-Teacher portal with administrative control. Features advanced biometric Face ID login, integrated real-time messenger (Call/Video/Chat), and an automated slot booking system for academic appointments. Includes modules for study material management, attendance tracking, and secure file sharing.", tech: ["React.js", "Node.js"], img: "/images/rvscas-portal.png", live: "https://rvscas-portal.onrender.com", repo: "#", doc: "/UDAYA[1P24MC056].pdf" },
-    { title: "AI Lyricist Portfolio", desc: "A personal showcase for my work as a lyricist. Built with Cloudinary and Next.js, this platform integrates AI music to transform my original lyrics into fully produced songs with professional vocals and compositions, bridging the gap between songwriting and studio production.", tech: ["Cloudinary", "Next.js"], img: "/images/lyricist-portfolio.png", live: "https://udaya-lyricist.onrender.com/", repo: "#", isAI: true, aiLink: "https://suno.com/" },
-    { title: "TexTrack QC", desc: "A specialized automation platform designed for the textile hub of Tirupur. It digitizes the manual inspection process for T-shirt manufacturing, automatically generating detailed quality control reports, final inspection summaries, and digital billing, replacing inefficient handwritten documentation.", tech: ["React.js"], img: "/images/textrack-qc.png", live: "https://report-ed7x.onrender.com/", repo: "#" },
-    { title: "Yolo Messenger", desc: "A premier full-stack real-time communication platform with fully functional Web and Mobile applications. Features integrated Biometric Authentication (Face ID & Fingerprint), WebRTC-powered audio/video calls, and cross-platform push notifications via FCM. Engineered for high performance with a scalable real-time architecture, ensuring instant messaging and call alerts across all devices.", tech: ["React.js", "Tailwind CSS", "Node.js", "MongoDB", "WebRTC", "Socket.io", "Firebase (FCM)", "Cloudinary"], img: "/images/yolo-messenger.png", live: "https://tharkurizsss.onrender.com/", repo: "#" },
+    { title: "Developer Portfolio", desc: "A highly optimized, professional portfolio built with a strict monochrome design. Features glassmorphism UI, smooth scroll animations, and interactive components designed for maximum performance.", tech: ["React.js", "Tailwind CSS", "Framer Motion"], img: "/images/portfolio-preview.png", altText: "Developer Portfolio - Monochrome React and Tailwind CSS website preview", live: "https://udaya-portfolio.onrender.com", repo: "https://github.com/Udaya1011/react-portfolio" },
+    { title: "Lyrics Studio", desc: "A personal lyrics management app built for a songwriter who wanted a dedicated space to write, save, and revisit their songs anytime, anywhere. Features a clean reader mode to showcase lyrics beautifully on any device.", tech: ["React.js", "Node.js"], img: "/images/lyrics-studio.png", altText: "Lyrics Studio - Personal lyrics management web application preview", live: "https://lyric-client.onrender.com/", repo: "#" },
+    { title: "Travellian", desc: "A travel portfolio single page application built during internship training using Figma designs. A clean and visually rich travel experience showcase with modern UI components.", tech: ["React.js", "Figma"], img: "/images/travellian.jpg", altText: "Travellian - React travel showcase single page application preview", live: "https://travellian.onrender.com", repo: "#", company: "IT Boomi", companyLink: "https://itboomi.com/", companyIcon: "/images/it-boomi-icon.png" },
+    { title: "Air Ambulance Service", desc: "Developed the frontend admin module during an internship for an Air Ambulance management platform. Responsible for building dashboards to manage hospitals, users, and billing operations. Implemented real-time flight tracking between locations with an automated billing system that calculates charges dynamically.", tech: ["React.js"], img: "/images/air-ambulance.png", altText: "Air Ambulance Service - Real-time medical logistics and flight tracking admin dashboard preview", live: "https://air-ambulance-frontend-7i8i.onrender.com/#/login", repo: "#", company: "Movi Cloud", companyLink: "https://www.movicloudlabs.com/", companyIcon: "/images/movi-cloud-icon.png" },
+    { title: "HMS - Hospital Management System", desc: "A comprehensive internship project involving a full frontend redesign and bug optimization of a hospital management system. Developed specialized role-based modules for Doctors, Pharmacists, and Pathologists to streamline clinical workflows and data management.", tech: ["React.js"], img: "/images/movi-hospital.png", altText: "HMS Hospital Management System - Specialized role-based clinical workflow platform preview", live: "https://hms-dev-2.onrender.com/", repo: "#", company: "Movi Cloud", companyLink: "https://www.movicloudlabs.com/", companyIcon: "/images/movi-cloud-icon.png" },
+    { title: "RVSCAS ACADEMIC PORTAL", desc: "My final year semester project: A robust Student-Teacher portal with administrative control. Features advanced biometric Face ID login, integrated real-time messenger (Call/Video/Chat), and an automated slot booking system for academic appointments. Includes modules for study material management, attendance tracking, and secure file sharing.", tech: ["React.js", "Node.js"], img: "/images/rvscas-portal.png", altText: "RVSCAS Academic Portal - Student-Teacher portal with face biometric login preview", live: "https://rvscas-portal.onrender.com", repo: "#", doc: "/UDAYA[1P24MC056].pdf" },
+    { title: "AI Lyricist Portfolio", desc: "A personal showcase for my work as a lyricist. Built with Cloudinary and Next.js, this platform integrates AI music to transform my original lyrics into fully produced songs with professional vocals and compositions, bridging the gap between songwriting and studio production.", tech: ["Cloudinary", "Next.js"], img: "/images/lyricist-portfolio.png", altText: "AI Lyricist Portfolio - Next.js and Cloudinary music showcase platform preview", live: "https://udaya-lyricist.onrender.com/", repo: "#", isAI: true, aiLink: "https://suno.com/" },
+    { title: "TexTrack QC", desc: "A specialized automation platform designed for the textile hub of Tirupur. It digitizes the manual inspection process for T-shirt manufacturing, automatically generating detailed quality control reports, final inspection summaries, and digital billing, replacing inefficient handwritten documentation.", tech: ["React.js"], img: "/images/textrack-qc.png", altText: "TexTrack QC - Tirupur textile inspection quality control platform preview", live: "https://report-ed7x.onrender.com/", repo: "#" },
+    { title: "Yolo Messenger", desc: "A premier full-stack real-time communication platform with fully functional Web and Mobile applications. Features integrated Biometric Authentication (Face ID & Fingerprint), WebRTC-powered audio/video calls, and cross-platform push notifications via FCM. Engineered for high performance with a scalable real-time architecture, ensuring instant messaging and call alerts across all devices.", tech: ["React.js", "Tailwind CSS", "Node.js", "MongoDB", "WebRTC", "Socket.io", "Firebase (FCM)", "Cloudinary"], img: "/images/yolo-messenger.png", altText: "Yolo Messenger - Real-time WebRTC and Socket.io full-stack communication platform preview", live: "https://tharkurizsss.onrender.com/", repo: "#" },
   ];
 
   return (
@@ -402,7 +406,9 @@ const Projects = () => {
                   <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500 z-10 pointer-events-none"></div>
                   <SafeImage
                     src={project.img}
-                    alt={project.title}
+                    alt={project.altText || project.title}
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-contain p-4 filter grayscale transition-all duration-700 group-hover:grayscale-0"
                     onError={(e: any) => { e.currentTarget.src = "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=800&auto=format&fit=crop" }}
                   />
@@ -427,7 +433,7 @@ const Projects = () => {
                 </div>
 
                 <div className="flex flex-wrap items-center gap-8 pt-6 border-t border-gray-800">
-                  <a href={project.live} target="_blank" rel="noreferrer" className="flex items-center gap-3 text-white hover:text-gray-300 transition-colors group">
+                  <a href={project.live} target="_blank" rel="noreferrer" aria-label={`Live preview of ${project.title}`} className="flex items-center gap-3 text-white hover:text-gray-300 transition-colors group">
                     <div className="w-12 h-12 rounded-full border border-gray-600 flex items-center justify-center group-hover:border-white transition-colors bg-dark-800">
                       <FiExternalLink className="text-xl" />
                     </div>
@@ -435,7 +441,7 @@ const Projects = () => {
                   </a>
 
                   {project.doc && (
-                    <a href={project.doc} target="_blank" rel="noreferrer" className="flex items-center gap-3 text-white hover:text-gray-300 transition-colors group">
+                    <a href={project.doc} target="_blank" rel="noreferrer" aria-label={`View documentation for ${project.title}`} className="flex items-center gap-3 text-white hover:text-gray-300 transition-colors group">
                       <div className="w-12 h-12 rounded-full border border-gray-600 flex items-center justify-center group-hover:border-white transition-colors bg-dark-800">
                         <FiDownload className="text-xl" />
                       </div>
@@ -444,7 +450,7 @@ const Projects = () => {
                   )}
 
                   {project.isAI && (
-                    <a href={project.aiLink} target="_blank" rel="noreferrer" className="flex items-center gap-3 text-white hover:text-gray-300 transition-colors group/ai">
+                    <a href={project.aiLink} target="_blank" rel="noreferrer" aria-label={`AI music page for ${project.title}`} className="flex items-center gap-3 text-white hover:text-gray-300 transition-colors group/ai">
                       <div className="w-12 h-12 rounded-full border border-gray-600 flex items-center justify-center bg-dark-800 group-hover/ai:border-white transition-colors">
                         <HiSparkles className="text-xl transition-colors" />
                       </div>
@@ -453,7 +459,7 @@ const Projects = () => {
                   )}
 
                   {project.company && (
-                    <a href={project.companyLink} target="_blank" rel="noreferrer" className="flex items-center gap-3 text-white hover:text-gray-300 transition-colors group/intern">
+                    <a href={project.companyLink} target="_blank" rel="noreferrer" aria-label={`Internship details at ${project.company}`} className="flex items-center gap-3 text-white hover:text-gray-300 transition-colors group/intern">
                       <div className="w-12 h-12 rounded-full border border-gray-600 flex items-center justify-center bg-dark-800 group-hover/intern:border-white transition-colors">
                         {project.company === 'IT Boomi' ? (
                           <IoInfinite className="text-xl" />
@@ -571,18 +577,18 @@ const Contact = () => {
           >
             <form onSubmit={handleSubmit} className="glass-card p-8 rounded-2xl space-y-6 border border-gray-700 bg-dark-900">
               <div>
-                <label className="block text-sm font-bold mb-2 text-white uppercase tracking-wider">Name</label>
-                <input type="text" name="NAME" required className="w-full px-4 py-3 bg-dark-800 border border-gray-700 rounded-lg focus:outline-none focus:border-white transition-colors text-white" placeholder="John Doe" />
+                <label htmlFor="contact-name" className="block text-sm font-bold mb-2 text-white uppercase tracking-wider">Name</label>
+                <input id="contact-name" type="text" name="NAME" required className="w-full px-4 py-3 bg-dark-800 border border-gray-700 rounded-lg focus:outline-none focus:border-white transition-colors text-white" placeholder="John Doe" />
               </div>
               <div>
-                <label className="block text-sm font-bold mb-2 text-white uppercase tracking-wider">Email</label>
-                <input type="email" name="E-MAIL" required className="w-full px-4 py-3 bg-dark-800 border border-gray-700 rounded-lg focus:outline-none focus:border-white transition-colors text-white" placeholder="john@example.com" />
+                <label htmlFor="contact-email" className="block text-sm font-bold mb-2 text-white uppercase tracking-wider">Email</label>
+                <input id="contact-email" type="email" name="E-MAIL" required className="w-full px-4 py-3 bg-dark-800 border border-gray-700 rounded-lg focus:outline-none focus:border-white transition-colors text-white" placeholder="john@example.com" />
               </div>
               <div>
-                <label className="block text-sm font-bold mb-2 text-white uppercase tracking-wider">Message</label>
-                <textarea name="MESSAGE" required rows={4} className="w-full px-4 py-3 bg-dark-800 border border-gray-700 rounded-lg focus:outline-none focus:border-white transition-colors text-white" placeholder="Your message here..."></textarea>
+                <label htmlFor="contact-message" className="block text-sm font-bold mb-2 text-white uppercase tracking-wider">Message</label>
+                <textarea id="contact-message" name="MESSAGE" required rows={4} className="w-full px-4 py-3 bg-dark-800 border border-gray-700 rounded-lg focus:outline-none focus:border-white transition-colors text-white" placeholder="Your message here..."></textarea>
               </div>
-              <button type="submit" className="w-full py-3 bg-white text-black font-bold rounded-lg transition-colors hover:bg-gray-300 border border-white uppercase tracking-widest">
+              <button type="submit" aria-label="Send message via WhatsApp" className="w-full py-3 bg-white text-black font-bold rounded-lg transition-colors hover:bg-gray-300 border border-white uppercase tracking-widest">
                 Send via WhatsApp
               </button>
               {status && <p className="text-center font-bold text-green-400">{status}</p>}
@@ -599,9 +605,9 @@ const Footer = () => {
   return (
     <footer className="border-t border-gray-800 py-8 text-center bg-dark-900">
       <div className="flex justify-center gap-6 mb-6">
-        <a href="https://github.com/Udaya1011" target="_blank" rel="noreferrer" className="text-gray-500 hover:text-white transition-colors text-xl"><FiGithub /></a>
-        <a href="https://www.linkedin.com/in/udayakumar-d-8471b430b" target="_blank" rel="noreferrer" className="text-gray-500 hover:text-white transition-colors text-xl"><FiLinkedin /></a>
-        <a href="https://www.instagram.com/k_i_n_g__m_a_k_er/?igsh=cHFnYW5pMG5wdGNy" target="_blank" rel="noreferrer" className="text-gray-500 hover:text-white transition-colors text-xl"><FiInstagram /></a>
+        <a href="https://github.com/Udaya1011" target="_blank" rel="noreferrer" aria-label="GitHub Profile" className="text-gray-500 hover:text-white transition-colors text-xl"><FiGithub /></a>
+        <a href="https://www.linkedin.com/in/udayakumar-d-8471b430b" target="_blank" rel="noreferrer" aria-label="LinkedIn Profile" className="text-gray-500 hover:text-white transition-colors text-xl"><FiLinkedin /></a>
+        <a href="https://www.instagram.com/k_i_n_g__m_a_k_er/?igsh=cHFnYW5pMG5wdGNy" target="_blank" rel="noreferrer" aria-label="Instagram Profile" className="text-gray-500 hover:text-white transition-colors text-xl"><FiInstagram /></a>
       </div>
       <p className="text-gray-500 font-medium text-sm">
         &copy; {new Date().getFullYear()} Udayakumar. All rights reserved.
@@ -835,12 +841,28 @@ function App() {
       }}
       className="min-h-screen bg-dark-900 text-white selection:bg-white selection:text-black"
     >
+      <Helmet>
+        <title>Udaya Kumar | Full Stack MERN Developer</title>
+        <meta name="description" content="Portfolio of Udayakumar D - Full Stack MERN Developer & UI/UX Engineer based in Tirupur, India. Specialized in React.js, Node.js, Express, MongoDB, Tailwind CSS, WebRTC, and scalable web apps." />
+        <link rel="canonical" href="https://udaya-portfolio.onrender.com/" />
+        <meta property="og:title" content="Udaya Kumar | Full Stack MERN Developer" />
+        <meta property="og:description" content="Portfolio of Udayakumar D - Full Stack MERN Developer & UI/UX Engineer based in Tirupur, India. Specialized in React.js, Node.js, Express, MongoDB, Tailwind CSS, WebRTC, and scalable web apps." />
+        <meta property="og:url" content="https://udaya-portfolio.onrender.com/" />
+        <meta property="og:image" content="https://udaya-portfolio.onrender.com/og-image.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Udaya Kumar | Full Stack MERN Developer" />
+        <meta name="twitter:description" content="Portfolio of Udayakumar D - Full Stack MERN Developer & UI/UX Engineer based in Tirupur, India." />
+        <meta name="twitter:image" content="https://udaya-portfolio.onrender.com/og-image.png" />
+      </Helmet>
+
       <Navbar />
-      <Hero />
-      <About />
-      <Skills />
-      <Projects />
-      <Contact />
+      <main id="main-content">
+        <Hero />
+        <About />
+        <Skills />
+        <Projects />
+        <Contact />
+      </main>
       <Footer />
 
       <IdentityReveal isOpen={showIdentity} onClose={() => setShowIdentity(false)} />
@@ -853,6 +875,7 @@ function App() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 20 }}
             onClick={scrollToTop}
+            aria-label="Scroll to top of page"
             className="fixed bottom-8 right-8 w-12 h-12 bg-white text-black rounded-full flex items-center justify-center shadow-lg hover:bg-gray-300 border border-white transition-colors z-50"
           >
             <FiArrowUp size={24} />

@@ -1,5 +1,6 @@
 import React, { lazy, Suspense, useState, useEffect } from 'react'
 import { createRoot } from 'react-dom/client'
+import { HelmetProvider } from 'react-helmet-async'
 import './index.css'
 import { setupSecurity, isDevToolsOpen } from './security'
 import Sorry from './Sorry'
@@ -95,6 +96,8 @@ const Main = () => {
 
 createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <Main />
+    <HelmetProvider>
+      <Main />
+    </HelmetProvider>
   </React.StrictMode>
 );
