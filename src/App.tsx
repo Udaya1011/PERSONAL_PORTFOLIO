@@ -842,16 +842,17 @@ function App() {
       className="min-h-screen bg-dark-900 text-white selection:bg-white selection:text-black"
     >
       <Helmet>
-        <title>Udaya Kumar | Full Stack MERN Developer</title>
-        <meta name="description" content="Portfolio of Udayakumar D - Full Stack MERN Developer & UI/UX Engineer based in Tirupur, India. Specialized in React.js, Node.js, Express, MongoDB, Tailwind CSS, WebRTC, and scalable web apps." />
+        <title>Udayakumar D (Udaya) | Full Stack MERN Developer Portfolio</title>
+        <meta name="title" content="Udayakumar D (Udaya) | Full Stack MERN Developer Portfolio" />
+        <meta name="description" content="Official Developer Portfolio of Udayakumar D (Udaya Kumar) - Full Stack MERN Developer & UI/UX Engineer based in Tirupur, India. Explore Udaya's web applications, lyrics studio, Yolo Messenger, React.js projects, and resume." />
         <link rel="canonical" href="https://udaya-portfolio.onrender.com/" />
-        <meta property="og:title" content="Udaya Kumar | Full Stack MERN Developer" />
-        <meta property="og:description" content="Portfolio of Udayakumar D - Full Stack MERN Developer & UI/UX Engineer based in Tirupur, India. Specialized in React.js, Node.js, Express, MongoDB, Tailwind CSS, WebRTC, and scalable web apps." />
+        <meta property="og:title" content="Udayakumar D (Udaya) | Full Stack MERN Developer Portfolio" />
+        <meta property="og:description" content="Official Developer Portfolio of Udayakumar D (Udaya Kumar) - Full Stack MERN Developer & UI/UX Engineer based in Tirupur, India. Explore Udaya's web applications, lyrics studio, Yolo Messenger, React.js projects, and resume." />
         <meta property="og:url" content="https://udaya-portfolio.onrender.com/" />
         <meta property="og:image" content="https://udaya-portfolio.onrender.com/og-image.png" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Udaya Kumar | Full Stack MERN Developer" />
-        <meta name="twitter:description" content="Portfolio of Udayakumar D - Full Stack MERN Developer & UI/UX Engineer based in Tirupur, India." />
+        <meta name="twitter:title" content="Udayakumar D (Udaya) | Full Stack MERN Developer Portfolio" />
+        <meta name="twitter:description" content="Official Developer Portfolio of Udayakumar D (Udaya Kumar) - Full Stack MERN Developer & UI/UX Engineer based in Tirupur, India." />
         <meta name="twitter:image" content="https://udaya-portfolio.onrender.com/og-image.png" />
       </Helmet>
 
