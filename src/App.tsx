@@ -95,7 +95,7 @@ const Hero = () => {
           </h1>
           <h3 className="text-2xl md:text-3xl font-semibold mb-6 h-10 text-gray-300">
             <Typewriter
-              words={['Full Stack Developer', 'UI/UX Engineer']}
+              words={['Full Stack Developer', 'MERN Stack Developer', 'UI/UX Engineer']}
               loop={true}
               cursor
               cursorStyle='|'
@@ -228,7 +228,7 @@ const About = () => {
               {[
                 { deg: 'Master of Computer Applications', inst: 'RVS College Of Arts & Science, Coimbatore', year: '2024 - 2026', score: 'CGPA: 8.4' },
                 { deg: 'Bachelor of Computer Applications', inst: 'RVS College Of Arts & Science, Coimbatore', year: '2021 - 2024', score: 'CGPA: 7.7' },
-                { deg: 'HSC (Business Mathematics)', inst: 'Migross Kids Matriculation Hr Sec School, Tiruppur', year: '2019 - 2021', score: '71.9%' },
+                { deg: 'HSC (Business Mathematics)', inst: 'Migross Kids Matriculation Hr Sec School, Tiruppur', year: '2019 - 2021', score: '77.2%' },
               ].map((item, i) => (
                 <div key={i} className="relative pl-6 border-l-2 border-gray-800 hover:border-white transition-colors group">
                   <div className="absolute w-2 h-2 bg-gray-800 rounded-full -left-[5px] top-2 group-hover:bg-white transition-colors"></div>
@@ -256,7 +256,7 @@ const About = () => {
                   <h4 className="text-xl font-bold text-white leading-tight">Full Stack Developer Intern <br/> & Frontend Team Lead</h4>
                   <span className="text-xs font-bold px-3 py-1 bg-white/5 rounded-full text-gray-400 border border-white/10 italic">Internship</span>
                 </div>
-                <p className="text-sm text-gray-400 mb-4 font-medium tracking-wide">Movi Cloud Labs | Dec 2025 - Feb 2026</p>
+                <p className="text-sm text-gray-400 mb-4 font-medium tracking-wide">Movi Cloud Labs | Dec 2025 - Mar 2026</p>
                 <div className="mb-4">
                   <a href="/resume/UDAYA (1).pdf" target="_blank" aria-label="View Internship Certificate PDF" className="text-xs font-bold text-white px-3 py-1.5 bg-white/10 rounded-lg border border-white/20 hover:bg-white hover:text-black transition-all inline-flex items-center gap-2">
                     View Certificate
@@ -681,7 +681,7 @@ const IdentityReveal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => v
                 <div className="mb-10">
                   <h1 className="text-6xl md:text-8xl font-black text-white tracking-tighter leading-none mb-4">UDAYA</h1>
                   <p className="text-[11px] text-gray-400 max-w-md leading-relaxed border-l border-white/20 pl-4">
-                    Highly motivated Full Stack Developer with a passion for creating cinematic web experiences. 
+                    Highly motivated Full Stack MERN Developer with a passion for creating cinematic web experiences. 
                     Specialized in modern JavaScript frameworks and scalable backend architectures.
                   </p>
                 </div>
